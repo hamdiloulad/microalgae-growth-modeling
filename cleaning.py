@@ -1,5 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from encoding import encode_and_save
+from splitPhotoperiod import split_photoperiod
+from sklearn.preprocessing import StandardScaler
 
 excel_file_path = 'D:\\DataProject\\venv\\inrhMicroalgae\\Import\\data.xlsx'
 df = pd.read_excel(excel_file_path)
@@ -32,3 +35,13 @@ for column in df_complete.columns:
     print(f"{column}\t\t\t{null_count}")
 num_rows = df_complete.shape[0]
 print(f"Number of Rows: {num_rows}")
+one_hot_features = ['CM'] 
+df_encoded=encode_and_save(df, one_hot_features)
+df_encoded= split_photoperiod(df_encoded)
+
+
+# Assuming 'df' is your DataFrame containing the features
+numerical_features = ['Temperature', 'Salinity', 'darkTime','lightTime', 'Day','LightIntensity']
+
+scaler = StandardScaler()
+df_encoded[numerical_features] = scaler.fit_transform(df_encoded[numerical_features])

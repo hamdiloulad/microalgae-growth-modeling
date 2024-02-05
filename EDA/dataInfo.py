@@ -8,7 +8,6 @@ def display_dataframe_info(df):
 
     unique_counts = df.nunique().tolist()
 
-    null_counts = df.isnull().sum().tolist()
 
     min_values = df.min().tolist()
 
@@ -20,7 +19,6 @@ def display_dataframe_info(df):
         'Unique Count': unique_counts,
         'Min': min_values,
         'Max': max_values,
-        'Null Count': null_counts,
     }
 
     info_df = pd.DataFrame(table_data)

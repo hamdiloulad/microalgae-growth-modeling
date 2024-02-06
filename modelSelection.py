@@ -12,15 +12,6 @@ from sklearn.neural_network import MLPRegressor
 import matplotlib.pyplot as plt
 
 
-import numpy as np
-import matplotlib.pyplot as plt
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-import numpy as np
-import matplotlib.pyplot as plt
-
 def selection(X_validation, y_validation, X_train, y_train):
     results = []
     models = ["Neural Network", "Gaussian Process", "KNN", "Gradient Boosting", "Decision Tree", "SVR", "Random Forest"]

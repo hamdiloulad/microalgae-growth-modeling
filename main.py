@@ -1,32 +1,21 @@
 import pandas as pd
-from encoding import encode_and_save
 from correlation import plot_correlation_heatmap
 from modelling import regression_model 
 from findMax import find_optimal_cell_density 
-from splitPhotoperiod import split_photoperiod
 
 
-excel_file_path = 'D:\\DataProject\\venv\\inrhMicroalgae\\Import\\data.xlsx'
+excel_file_path = 'D:\\DataProject\\venv\\inrhMicroalgae\\Import\\cleaned_data.xlsx'
 df = pd.read_excel(excel_file_path)
-# Assuming you have a DataFrame named 'data' with a 'photoperiod' column
-df= split_photoperiod(df)
-
-# Specify features for one-hot encoding and label encoding
-one_hot_features = ['CM']
-df_encoded=encode_and_save(df, one_hot_features)
-
-
-plot_correlation_heatmap(df_encoded)
-
-
+plot_correlation_heatmap(df)
 
 target_column = 'CellDensity'  
 feature_columns = ['Temperature', 'LightIntensity','Salinity','Day', 'lightTime','darkTime','CM_f2','CM_map','CM_npk']  
 
-model = regression_model(df_encoded, feature_columns,target_column)
+
+model = regression_model(df, feature_columns,target_column)
 
 Temperature= [24,26, 28, 30,32]
-LightIntensity = [300,400, 500, 600,700]
+LightIntensity = [300,400,500, 600,700]
 darkTime = [14, 18,20,24]
 lightTime = [4, 6,10]
 Day= [1, 2, 3,4, 5, 6,7,8]

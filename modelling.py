@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.metrics import mean_squared_error
 import numpy as np
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
+import lightgbm as lgb
 from performance import evaluate_regression_model
 from modelSelection import selection
 from featureImportance import plot_variable_importances
@@ -13,8 +13,9 @@ def regression_model(df, features, target):
     # Split the remaining data into validation and testing sets
     X_val, X_test, y_val, y_test = train_test_split(X_test, y_test, test_size=0.5, random_state=42)
     
-    bestModel = selection(X_val, y_val, X_train, y_train)
-    model = RandomForestRegressor(max_depth=7)
+    #bestModel = selection(X_val, y_val, X_train, y_train)
+    model = lgb.LGBMRegressor(objective='regression', metric='mse', boosting_type='gbdt',
+                                      num_leaves=40, learning_rate=0.05, num_boost_round=100)
     model.fit(X_train, y_train)
     feature_names = np.array(features)
     plot_variable_importances(model, feature_names)

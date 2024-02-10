@@ -19,10 +19,10 @@ def selection(X_validation, y_validation, X_train, y_train):
             model = xgb.XGBRegressor(objective='reg:squarederror', colsample_bytree=0.3, learning_rate=0.1,
                                      max_depth=5, alpha=10, n_estimators=10)
         elif model_type == "CatBoost":
-            model = CatBoostRegressor(iterations=50, depth=3, learning_rate=0.1, loss_function='RMSE')
+            model = CatBoostRegressor(iterations=50, depth=6, learning_rate=0.1, loss_function='RMSE')
         elif model_type == "LightGBM":
             model = lgb.LGBMRegressor(objective='regression', metric='mse', boosting_type='gbdt',
-                                      num_leaves=31, learning_rate=0.05, num_boost_round=100)
+                                      num_leaves=40, learning_rate=0.05, num_boost_round=100)
 
         model.fit(X_train, y_train)
 

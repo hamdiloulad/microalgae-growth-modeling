@@ -11,7 +11,6 @@ plot_correlation_heatmap(df)
 target_column = 'CellDensity'  
 feature_columns = ['Temperature', 'LightIntensity','Salinity','Day', 'lightTime','darkTime','CM_f2','CM_map','CM_npk']  
 
-
 model = regression_model(df, feature_columns,target_column)
 
 Temperature= [24,26, 28, 30,32]

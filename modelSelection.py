@@ -38,7 +38,7 @@ def selection(X_validation, y_validation, X_train, y_train):
         # Calculate AIC
         n = len(y_validation)
         AIC = -2 * np.log(mse) + 2 * num_params
-        aic_scores.append(AIC)  # Take the absolute value of AIC scores
+        aic_scores.append(AIC)  
 
         # Calculate R-squared
         r_squared = r2_score(y_validation, y_pred_validation)
@@ -49,7 +49,7 @@ def selection(X_validation, y_validation, X_train, y_train):
     x = np.arange(len(models))
     width = 0.35
 
-    fig, ax = plt.subplots(figsize=(8.4, 3.9))  # Set the desired width and height of the plot
+    fig, ax = plt.subplots(figsize=(8.4, 3.9))  
     modelss = ["XGBoost", "CatBoost", "LightGBM"]
 
     # AIC scores
@@ -58,14 +58,14 @@ def selection(X_validation, y_validation, X_train, y_train):
     ax.set_ylabel('AIC Scores')
 
     # Adjusted R-squared values
-    ax2 = ax.twinx()  # Create a twin axes sharing the x-axis
+    ax2 = ax.twinx()  
     bar2 = ax2.bar(x + width / 2, r_squared_values, width, color='#70CAC6', alpha=1, label='R-squared', zorder=1)
     ax2.set_ylabel('R-squared Values')
 
     ax.set_xticks(x)
     ax.set_xticklabels(modelss, fontdict={'fontsize': 6})
 
-    ax.yaxis.grid(True, linestyle='dashed', color='grey', alpha=0.4, zorder=0)  # Set dashed grey grid lines for y-axis
+    ax.yaxis.grid(True, linestyle='dashed', color='grey', alpha=0.4, zorder=0)  
     ax.set_yticks(np.linspace(ax.get_yticks()[0], ax.get_yticks()[-1], len(ax2.get_yticks())))
     # Add values above the AIC score bars
     for rect in bar1:

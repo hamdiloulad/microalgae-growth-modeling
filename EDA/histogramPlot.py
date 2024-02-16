@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def create_histogram(df, feature_name):
-    fig, ax = plt.subplots(figsize=(7.14, 2.655))  # Adjust the figure size if needed
+    fig, ax = plt.subplots(figsize=(7.14, 2.655))  
 
     # Create the histogram
     bin_width = 0.5

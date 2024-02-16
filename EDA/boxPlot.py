@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 def plot_boxplot(df, feature_name):
-    plt.figure(figsize=(10, 6))  # Adjust the figure size if needed
+    plt.figure(figsize=(10, 6))  
 
     # Create the box plot
     df.boxplot(column=feature_name)

@@ -4,6 +4,7 @@ from splitPhotoperiod import split_photoperiod
 from scaling import scaling_and_save
 from knnImputing import TuningKnnImputing
 from sklearn.impute import KNNImputer
+from reversescaling import rescale
 from sklearn.metrics import mean_squared_error
 import numpy as np
 
@@ -64,5 +65,4 @@ print(f"Root Mean Squared Error (RMSE) between true and imputed values: {result_
 imputer_all = KNNImputer(n_neighbors=10, metric='nan_euclidean', weights='distance')
 df_imputation_values = imputer_all.fit_transform(df_scaled[all_features])
 df_imputation = pd.DataFrame(df_imputation_values, columns=all_features)
-df_imputation.to_excel('D:\\DataProject\\venv\\inrhMicroalgae\\Import\\cleaned_data.xlsx', index=False)
-
+result_df = rescale(df_imputation, numerical_features, scaler_filename='custom_scaler_model.pkl')
